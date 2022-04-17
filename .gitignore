@@ -1,4 +1,3 @@
-generator/bash/source
 resources/static/assets/excel
 resources/static/assets/csv
 resources/static/assets/uploads/*.png
