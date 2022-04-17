@@ -89,30 +89,28 @@ npm run db:reset
 
 # GENERATOR CRUD
 
-there is have 2 file of bash script for generate file and code automatic `yo-gen.sh` and `light-yo-gen.sh`
-
 ```
-chmod +x yo-gen.sh
-./yo-gen.sh
-```
-
-```
-chmod +x light-yo-gen.sh
-./light-yo-gen.sh
+chmod +x yo-coregen.sh
+./yo-coregen.sh
 ```
 
 output
 
 ```
-1) generate model & migration
-2) generate model & migration ( with state_condition )
-3) generate model & migration ( with core_relation )
-4) generate model & migration ( with core_relation + state_condition )
-5) generate controller & router
-6) generate controller & router ( with state_condition )
-7) generate controller & router ( with core_relation )
-8) generate controller & router ( with core_relation + state_condition )
-9) Quit
+ 1) -----------------------
+ 2) generate migration, model, controller & router
+ 3) generate seeder
+ 4) -----------------------
+ 5) migrate fresh seed
+ 6) import view.sql
+ 7) npx sequelize-cli db:migrate
+ 8) npx sequelize-cli db:seed:all
+ 9) DROP DATABASE
+10) --------SERVER---------
+11) RESTART SERVICE NODEJS
+12) JOURNAL SERVICE NODEJS
+13) show http listen
+14) Quit
 Please enter your choice:
 ```
 
