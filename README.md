@@ -143,7 +143,7 @@ raw json
 }
 ```
 
-see more default endpoint, click here.
+see more default endpoint, <https://www.postman.com/yogithesymbianer/workspace/generator-api/collection/7372953-141789f0-01f9-495b-8df9-9548f9eb669e}>
 <br/>
 <br/>
 
