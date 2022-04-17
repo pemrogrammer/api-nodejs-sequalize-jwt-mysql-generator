@@ -1,0 +1,1 @@
+generator/bash/source/yo-coregen.sh

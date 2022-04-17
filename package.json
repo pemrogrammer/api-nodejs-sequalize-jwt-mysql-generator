@@ -1,0 +1,71 @@
+{
+  "name": "api-nodejs-sequalize-jwt-mysql-generator",
+  "version": "1.0.0",
+  "description": "NODE.JS 2022 generator crud & good response",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config server.js",
+    "start": "nodemon -r dotenv/config --max-http-header-size 15000 --max-old-space-size=2048 server.js",
+    "restart": "lsof -i:8080 | grep -v 'PID' | awk '{print $2}' | xargs kill -9 && nodemon --max-http-header-size 15000 --max-old-space-size=2048 server.js",
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all --debug",
+    "db:erase": "npx sequelize-cli db:drop --debug",
+    "lint": "./node_modules/.bin/eslint --ignore-path .gitignore . --fix"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@config": "src/config",
+    "@controllers": "src/controllers",
+    "@db": "src/db",
+    "@middleware": "src/middleware",
+    "@routes": "src/routes",
+    "@utils": "src/utils"
+  },
+  "_moduleDirectories": [
+    "node_modules_custom"
+  ],
+  "keywords": [
+    "node.js",
+    "express",
+    "jwt",
+    "authentication",
+    "mysql"
+  ],
+  "author": "Yogi Arif Widodo (yogithesymbian)",
+  "license": "MIT License",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "chai": "^4.3.4",
+    "cors": "^2.8.5",
+    "csv": "^6.0.5",
+    "dotenv": "^10.0.0",
+    "exceljs": "^4.3.0",
+    "express": "^4.17.1",
+    "flatted": "^3.2.2",
+    "handlebars": "^4.7.7",
+    "http2-express-bridge": "^1.0.7",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^9.1.3",
+    "module-alias": "^2.2.2",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "multer": "^1.4.4",
+    "mysql2": "^2.3.0",
+    "nodemailer": "^6.6.3",
+    "pdf-creator-node": "^2.2.4",
+    "pdf-lib": "^1.17.1",
+    "pdf-merger-js": "^3.2.1",
+    "read-excel-file": "^5.2.26",
+    "sequelize": "^6.6.5",
+    "uuid": "^8.3.2",
+    "uuidv4": "^6.2.12",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13",
+    "sequelize-cli": "^6.2.0",
+    "lodash": ">=4.17.21"
+  }
+}

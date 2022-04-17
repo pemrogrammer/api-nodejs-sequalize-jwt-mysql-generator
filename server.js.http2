@@ -1,0 +1,80 @@
+const express = require("express");
+const http2Express = require('http2-express-bridge')
+const http2 = require('http2');
+
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const { readFileSync } = require('fs')
+
+// const app = express();
+const app = http2Express(express)
+// var corsOptions = {
+//   origin: "*",
+//   optionsSuccessStatus: 200,
+// };
+
+global.__basedir = __dirname; // global path
+
+global.colorWhite = "FFFFFFFF";
+global.colorYellow = "FFFFFF00";
+global.colorRed = "FF99CC00";
+global.colorAbu = "FFD9D9D9";
+global. = "FF008080";
+global.colorStabilo = "FF66FF33";
+global.colorStabiloGray = "8066FF33";
+global.colorOrange = "FFF79633";
+global.colorCream = "FFFCD5B4";
+global.colorBlue = "FF0000F5";
+global.colorRed = "FFCA3142";
+
+global.moment = require('moment-timezone');
+moment().locale("id");
+moment().tz("Asia/Makassar").format();
+
+// app.use(cors(corsOptions));
+app.use(cors());
+
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+console.log('run mode on : ', process.env.NODE_ENV);
+
+// production
+const db = require("./src/db/models");
+
+// db.sequelize.sync();
+db.sequelize.sync().then((req) => {
+    // console.log('req model : ', req.models);
+});
+
+// auto register routes
+const routes = require("./src/routes");
+
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to yo api application." });
+});
+for (const [key, value] of routes.entries()) {
+  require(`${value}`)(app);
+}
+
+app.use(express.static(__dirname + '/resources/static/assets/tmp'));
+app.use(express.static(__dirname + '/resources/static/assets/excel'));
+
+// set port, listen for requests
+const PORT = process.env.PORT || 3001;
+
+const options = {
+    key: readFileSync(__dirname + '/src/config/server.key'),
+    cert: readFileSync(__dirname + '/src/config/server.cert'),
+    allowHTTP1: true,
+    // passphrase: '1234'
+};
+const server = http2.createSecureServer(options, app)
+
+server.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`)
+})
